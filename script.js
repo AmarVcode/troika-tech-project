@@ -1,23 +1,23 @@
 
-//  const apiUrl = `https://newsapi.org/v2/top-headlines?country=in&apiKey=228ada60288344b79b57f570c03ddda2`;
+ const apiUrl = `https://newsapi.org/v2/top-headlines?country=in&apiKey=228ada60288344b79b57f570c03ddda2`;
 
-//  async function fetchNewsAndSave() {
-//      try {
-//          const response = await fetch(apiUrl);
-//          if (!response.ok) {
-//              throw new Error('Network response was not ok');
-//          }
-//          const data = await response.json();
+ async function fetchNewsAndSave() {
+     try {
+         const response = await fetch(apiUrl);
+         if (!response.ok) {
+             throw new Error('Network response was not ok');
+         }
+         const data = await response.json();
 
-//          localStorage.setItem('newsData', JSON.stringify(data));
+         localStorage.setItem('newsData', JSON.stringify(data));
 
-//          console.log('News data fetched and saved to local storage:', data);
-//      } catch (error) {
-//          console.error('There was a problem with the fetch operation:', error);
-//      }
-//  }
+         console.log('News data fetched and saved to local storage:', data);
+     } catch (error) {
+         console.error('There was a problem with the fetch operation:', error);
+     }
+ }
 
-//  fetchNewsAndSave();
+ fetchNewsAndSave();
 
 
 
