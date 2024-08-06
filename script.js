@@ -23,26 +23,50 @@
 
 
 
- const apiUrl = `https://api.twingly.com/blog/search/api/v3/search?apikey=1A485512-C61B-40EC-BC9E-ECD2EF34E6B0&q=%22indian%20Celebrity%22%20page-size:10`;
+async function fetchBlogs(search) {
+    try {
+        const response = await fetch('./blog.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        const finaldata = data.twinglydata.post;
 
- async function fetchNewsAndSave() {
-     try {
-         const response = await fetch(apiUrl);
-         if (!response.ok) {
-             throw new Error('Network response was not ok');
-         }
-         const data = await response.json();
+        // Filter the data based on the search term
+        const filteredData = finaldata.filter(item => 
+            item.title.toLowerCase().includes(search.toLowerCase())
+        );
 
-         localStorage.setItem('newsData', JSON.stringify(data));
+        // Limit to 100 items
+        const limitedData = filteredData.slice(0, 100);
 
-         console.log('News data fetched and saved to local storage:', data);
-     } catch (error) {
-         console.error('There was a problem with the fetch operation:', error);
-     }
- }
-
- fetchNewsAndSave();
-
+        const cardsContainer = document.getElementById('cards-container');
+        cardsContainer.innerHTML = limitedData.map(item => {
+            const textWithoutImages = item.text.replace(/<img[^>]*>/g, ''); // Remove <img> tags
+            const truncatedText = textWithoutImages.split(' ').slice(0, 20).join(' ') + '...'; // Limiting to ~20 words
+            const truncatedTitle = item.title.split(' ').slice(0, 10).join(' '); // Limiting to ~10 words
+            return `
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">${truncatedTitle}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">by ${item.author}</h6>
+                            <p class="card-text">${truncatedText}</p>
+                            ${item.url ? `<a href="${item.url}" class="btn btn-primary" target="_blank">Read more</a>` : ''}
+                        </div>
+                        <div class="card-footer">
+                            Published on: ${new Date(item.published_at).toLocaleDateString()}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }).join('');
+    } catch (error) {
+        console.error('Error fetching news data:', error);
+    }
+}
+let mysearchdefault = ""
+fetchBlogs(mysearchdefault);
 
 
 
@@ -169,3 +193,50 @@ function filterNewsData(keyword) {
     mapnewsdata(newdata)
     
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//for youtube
+let youtubedata = [
+    {title:" Main Aur Mumbai | Aakash Gupta | Stand-up Comedy ", url:"https://www.youtube.com/embed/GxJMuSAYZrE?si=FkKv_n57BR55cKqI"},
+    {title:"  Earth se Badi Roti?? Indian TV Serials Roast  ", url:"https://www.youtube.com/embed/YFqE8p7m88s?si=rje16Cfif_tToQrh"},
+    {title:"  Adv Vimal | Sasu Sunbai case | Vinayak Mali Comedy ", url:"https://www.youtube.com/embed/cSvKlvAJJeo?si=8Sm5jnS2c47tgaeJ"}
+    
+]
+
+
+
+/* <iframe width="560" height="315" src="https://www.youtube.com/embed/GxJMuSAYZrE?si=FkKv_n57BR55cKqI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> */
+
+
+        // Function to generate and display YouTube video cards
+        function displayYouTubeVideos() {
+            const cardsContainer = document.getElementById('cards-containery');
+            cardsContainer.innerHTML = youtubedata.map(item => {
+                return `
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <iframe src="${item.url}" title="${item.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                            <div class="card-body">
+                                <h5 class="card-title">${item.title}</h5>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Initial display of YouTube videos
+        displayYouTubeVideos();
