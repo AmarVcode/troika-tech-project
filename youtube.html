@@ -17,7 +17,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Top News India</a>
+                        <a class="nav-link" href="topnews.html">Top News India</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="youtube.html">Top Youtube Videos</a>
@@ -29,7 +29,7 @@
                         <a class="nav-link" href="googlemap.html">Google Map</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="celibrityblog.html">Famous Celibrity Blogs</a>
+                        <a class="nav-link" href="index.html">Famous Celibrity Blogs</a>
                     </li>
                 </ul>
             </div>
@@ -38,13 +38,65 @@
 
     <div class="content container">
         <!-- Main content goes here -->
+        <style>
+            .card {
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                overflow: hidden;
+            }
+            .card iframe {
+                width: 100%;
+                height: 200px; /* Adjust height as needed */
+            }
+            .card-body {
+                padding: 15px;
+            }
+        </style>
+<div id="cardsyoutube" style="display: flex; justify-content: center;">
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <iframe src="https://www.youtube.com/embed/GxJMuSAYZrE?si=FkKv_n57BR55cKqI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <div class="card-body">
+                <h5 class="card-title" style="font-size: 16px;">Main Aur Mumbai | Aakash Gupta | Stand-up Comedy</h5>
+            </div>
+            <div class="overlay-card-my" onclick="openPopup('https://www.youtube.com/embed/GxJMuSAYZrE?si=FkKv_n57BR55cKqI')">
 
-<div id="cards-containery">
-    
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <iframe src="https://www.youtube.com/embed/YFqE8p7m88s?si=rje16Cfif_tToQrh" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <div class="card-body">
+                <h5 class="card-title" style="font-size: 16px;">Earth se Badi Roti?? Indian TV Serials Roast</h5>
+            </div>
+            <div class="overlay-card-my" onclick="openPopup('https://www.youtube.com/embed/YFqE8p7m88s?si=rje16Cfif_tToQrh')">
+
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <iframe src="https://www.youtube.com/embed/cSvKlvAJJeo?si=8Sm5jnS2c47tgaeJ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <div class="card-body">
+                <h5 class="card-title" style="font-size: 16px;">Adv Vimal | Sasu Sunbai case | Vinayak Mali Comedy</h5>
+            </div>
+            <div class="overlay-card-my" onclick="openPopup('https://www.youtube.com/embed/cSvKlvAJJeo?si=8Sm5jnS2c47tgaeJ')">
+
+            </div>
+        </div>
+    </div>
 </div>
         
         </div>
 
+        <!-- Popup Overlay -->
+        <div id="popupOverlay" class="popup-overlay">
+            <div class="popup-content">
+                <button class="close-btn" onclick="closePopup()">&times;</button>
+                <iframe id="my-pop-vid" src="https://www.youtube.com/embed/GxJMuSAYZrE?si=FkKv_n57BR55cKqI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+        </div>
 
 
     </div>

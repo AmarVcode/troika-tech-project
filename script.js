@@ -218,25 +218,20 @@ let youtubedata = [
 
 
 
-/* <iframe width="560" height="315" src="https://www.youtube.com/embed/GxJMuSAYZrE?si=FkKv_n57BR55cKqI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> */
 
 
-        // Function to generate and display YouTube video cards
-        function displayYouTubeVideos() {
-            const cardsContainer = document.getElementById('cards-containery');
-            cardsContainer.innerHTML = youtubedata.map(item => {
-                return `
-                    <div class="col-md-4 mb-4">
-                        <div class="card">
-                            <iframe src="${item.url}" title="${item.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                            <div class="card-body">
-                                <h5 class="card-title">${item.title}</h5>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
 
-        // Initial display of YouTube videos
-        displayYouTubeVideos();
+
+
+
+
+   // Function to open the popup
+   function openPopup(i) {
+    document.getElementById("my-pop-vid").src=i;
+    document.getElementById('popupOverlay').style.display = 'block';
+}
+
+// Function to close the popup
+function closePopup() {
+    document.getElementById('popupOverlay').style.display = 'none';
+}
