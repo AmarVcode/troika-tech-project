@@ -23,6 +23,58 @@
 
 
 
+ const apiUrl = `https://api.twingly.com/blog/search/api/v3/search?apikey=1A485512-C61B-40EC-BC9E-ECD2EF34E6B0&q=%22indian%20Celebrity%22%20page-size:10`;
+
+ async function fetchNewsAndSave() {
+     try {
+         const response = await fetch(apiUrl);
+         if (!response.ok) {
+             throw new Error('Network response was not ok');
+         }
+         const data = await response.json();
+
+         localStorage.setItem('newsData', JSON.stringify(data));
+
+         console.log('News data fetched and saved to local storage:', data);
+     } catch (error) {
+         console.error('There was a problem with the fetch operation:', error);
+     }
+ }
+
+ fetchNewsAndSave();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
